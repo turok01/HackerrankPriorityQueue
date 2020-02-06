@@ -1,8 +1,6 @@
 package com.Igor;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
 /*
  * Create the Student and Priorities classes here.
  */
@@ -50,9 +48,22 @@ class StudentIdComparator implements Comparator<Student>{
     }
 }
 class Priorities{
-
+    public List<Student> getStudents(List<String> events){
+        int served = 0;
+        Comparator<Student> studentComparator = new StudentCgpaComparator().
+                thenComparing(new StudentNameComparator().
+                        thenComparing(new StudentIdComparator()));
+        PriorityQueue<Student> studentPriorityQueue = new PriorityQueue<Student>(events.size(),
+                studentComparator);
+        for(String event : events){
+            if(event.equals("SERVED")) served++;
+            //else
+                //event.
+        }
+        return studentPriorityQueue;
+    }
 }
-public class Solution {
+public class Main {
     private final static Scanner scan = new Scanner(System.in);
     private final static Priorities priorities = new Priorities();
 
